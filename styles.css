@@ -136,3 +136,12 @@ h1 {
   font-style: italic;
   color: #bbb;
 }
+
+.card h2 a {
+  color: #d1d1d1;
+  text-decoration: none;
+}
+
+.card h2 a:hover {
+  color: #e8e0c9;
+}
