@@ -42,6 +42,12 @@ body {
   letter-spacing: 4px;
 }
 
+.subtitulo {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  letter-spacing: 4px;
+}
+
 .frase {
   margin-top: 10px;
   color: #aaa;
