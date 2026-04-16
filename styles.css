@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #d1d1d1;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+.grain {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.05;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  margin-top: 10px;
+  color: #bfbfbf;
+}
+
+/* Catalogo */
+.catalogo {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Cards */
+.card {
+  border: 1px solid #2a2a2a;
+  padding: 25px;
+  margin-bottom: 20px;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  border-color: #e8e0c9;
+  transform: translateY(-3px);
+}
+
+/* ID */
+.id {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Title */
+.card h2 {
+  font-family: 'Cinzel', serif;
+  margin: 10px 0;
+}
+
+/* Buttons */
+.buttons {
+  margin-top: 15px;
+}
+
+.buttons a {
+  text-decoration: none;
+  color: #d1d1d1;
+  border: 1px solid #444;
+  padding: 6px 12px;
+  margin-right: 10px;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.buttons a:hover {
+  border-color: #e8e0c9;
+  color: #e8e0c9;
+}
