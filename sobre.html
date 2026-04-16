@@ -2,33 +2,53 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre el proyecto — Stories</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="grain"></div>
+  <div class="page-wrap">
 
-  <main class="filosofia">
+    <div class="page-hud">
+      <span class="hud-rec"><span class="dot"></span> REC</span>
+      <span>SOBRE EL PROYECTO // STORIES</span>
+      <span id="hudTime">00:00:00</span>
+    </div>
 
-    <a href="index.html" class="volver">← Inicio</a>
+    <main class="sobre-wrap">
 
-    <h1 class="subtitulo">Mi filosofía</h1>
+      <a href="index.html" class="volver">← Inicio</a>
 
-    <p>
-      No escribo para vender historias. Escribo para que alguien, en algún lugar, sienta algo.
-    </p>
+      <h1>Mi filosofía</h1>
 
-    <p>
-      Prefiero que los cuentos circulen, que generen sentimientos, que se queden en la cabeza.
-    </p>
+      <p>
+        No escribo para vender historias. Escribo para que alguien, en algún lugar, sienta algo.
+      </p>
 
-    <p>
-      Si alguno de estos textos logra eso, entonces ya cumplió su propósito.
-    </p>
+      <p>
+        Prefiero que los cuentos circulen, que generen sentimientos, que se queden en la cabeza.
+      </p>
 
-  </main>
+      <p>
+        Si alguno de estos textos logra eso, entonces ya cumplió su propósito.
+      </p>
+
+    </main>
+
+  </div>
+
+  <script>
+    let s = 0;
+    setInterval(() => {
+      s++;
+      const h = String(Math.floor(s/3600)).padStart(2,'0');
+      const m = String(Math.floor((s%3600)/60)).padStart(2,'0');
+      const sec = String(s%60).padStart(2,'0');
+      document.getElementById('hudTime').textContent = `${h}:${m}:${sec}`;
+    }, 1000);
+  </script>
 
 </body>
 </html>
