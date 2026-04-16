@@ -132,5 +132,25 @@ loop();
     });
   </script>
 
+  <script>
+const screenEl = document.getElementById('tvScreen');
+
+document.querySelectorAll('.tv-menu-item').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault(); // evita salto inmediato
+
+    const target = this.href;
+
+    // animación de apagado
+    screenEl.classList.add('turn-off');
+
+    // delay antes de cambiar de página
+    setTimeout(() => {
+      window.location.href = target;
+    }, 400);
+  });
+});
+</script>
+
 </body>
 </html>
