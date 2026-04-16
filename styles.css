@@ -670,6 +670,7 @@ a {
   color: var(--text-dim);
   line-height: 1.9;
   margin-bottom: 20px;
+  letter-spacing: 0.5px;
 }
 
 /* ========================= */
