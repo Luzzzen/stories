@@ -2,37 +2,56 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo — Stories</title>
   <link rel="stylesheet" href="styles.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="grain"></div>
+  <div class="page-wrap">
 
-  <header>
-    <a href="index.html" class="volver">← Inicio</a>
-    <h1>Cuentos</h1>
-    <p class="subtitle">Relatos disponibles</p>
-  </header>
-
-  <main class="catalogo">
-
-    <div class="card">
-      <span class="id">#001</span>
-      <h2><a href="cuentos/el-servicio.html">El servicio</a></h2>
-      <p>
-        Después de perderlo todo, un hombre encuentra una forma de volver a hablar con quien ya no está.
-      </p>
-
-      <div class="buttons">
-        <a href="downloads/el-servicio.epub">EPUB</a>
-        <a href="downloads/el-servicio.pdf">PDF</a>
-      </div>
+    <!-- HUD fijo -->
+    <div class="page-hud">
+      <span class="hud-rec"><span class="dot"></span> REC</span>
+      <span>CATÁLOGO // STORIES</span>
+      <span id="hudTime">00:00:00</span>
     </div>
 
-  </main>
+    <main class="catalogo-wrap">
+
+      <header>
+        <a href="index.html" class="volver">← Inicio</a>
+        <h1>Cuentos</h1>
+        <p class="subtitle">Relatos disponibles — descarga libre</p>
+      </header>
+
+      <div class="card">
+        <span class="id">#001</span>
+        <h2><a href="cuentos/el-servicio.html">El servicio</a></h2>
+        <p>
+          Después de perderlo todo, un hombre encuentra una forma de volver a hablar con quien ya no está.
+        </p>
+        <div class="buttons">
+          <a href="downloads/el-servicio.epub">EPUB</a>
+          <a href="downloads/el-servicio.pdf">PDF</a>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script>
+    let s = 0;
+    setInterval(() => {
+      s++;
+      const h = String(Math.floor(s/3600)).padStart(2,'0');
+      const m = String(Math.floor((s%3600)/60)).padStart(2,'0');
+      const sec = String(s%60).padStart(2,'0');
+      document.getElementById('hudTime').textContent = `${h}:${m}:${sec}`;
+    }, 1000);
+  </script>
 
 </body>
 </html>
