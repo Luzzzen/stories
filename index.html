@@ -52,10 +52,15 @@
     const ctx = canvas.getContext('2d');
 
     function resizeCanvas() {
-      const screen = canvas.parentElement;
-      canvas.width = screen.clientWidth;
-      canvas.height = screen.clientHeight;
-    }
+  const screen = canvas.parentElement;
+  const w = screen.clientWidth;
+  const h = screen.clientHeight;
+
+  if (canvas.width !== w || canvas.height !== h) {
+    canvas.width = w;
+    canvas.height = h;
+  }
+}
 
     function drawNoise() {
       resizeCanvas();
