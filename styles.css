@@ -66,7 +66,9 @@ body {
 
 .home-buttons a {
   text-decoration: none;
-  border: 1px solid #444;
+  border: 1px solid #333;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(2px);
   padding: 10px 20px;
   margin: 10px;
   color: #d1d1d1;
