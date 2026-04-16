@@ -55,6 +55,21 @@ body {
   opacity: 0.8;
 }
 
+.subtitulo {
+  animation: fadeSub 2s ease;
+}
+
+@keyframes fadeSub {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+
 .frase {
   margin-top: 10px;
   color: #aaa;
