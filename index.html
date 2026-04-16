@@ -32,5 +32,18 @@
 
   </main>
 
+<script>
+let seconds = 0;
+
+setInterval(() => {
+  seconds++;
+
+  let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+  let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+  let secs = String(seconds % 60).padStart(2, '0');
+
+  document.getElementById("time").textContent = `${hrs}:${mins}:${secs}`;
+}, 1000);
+</script>  
 </body>
 </html>
