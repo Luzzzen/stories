@@ -282,3 +282,62 @@ body {
   opacity: 0.15;
   pointer-events: none;
 }
+
+/* ========================= */
+/* GLITCH CINEMATOGRAFICO */
+/* ========================= */
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: #e8e0c9;
+}
+
+.glitch::after {
+  color: #ffffff;
+}
+
+/* Apariciones sutiles */
+@keyframes glitchFlash {
+  0%, 94%, 100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+
+  95% {
+    opacity: 0.08;
+    transform: translate(-2px, 1px);
+  }
+
+  96% {
+    opacity: 0.06;
+    transform: translate(2px, -1px);
+  }
+
+  97% {
+    opacity: 0.04;
+    transform: translate(-1px, 2px);
+  }
+}
+
+.glitch::before {
+  animation: glitchFlash 7s infinite;
+}
+
+.glitch::after {
+  animation: glitchFlash 7s infinite reverse;
+}
