@@ -90,3 +90,49 @@ h1 {
   border-color: #e8e0c9;
   color: #e8e0c9;
 }
+
+.cuento {
+  max-width: 700px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+.volver {
+  text-decoration: none;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.volver:hover {
+  color: #e8e0c9;
+}
+
+.cuento h1 {
+  font-family: 'Cinzel', serif;
+  margin: 20px 0;
+}
+
+.sinopsis {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.descargas a {
+  display: inline-block;
+  margin-right: 10px;
+  border: 1px solid #444;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: #d1d1d1;
+}
+
+.descargas a:hover {
+  border-color: #e8e0c9;
+  color: #e8e0c9;
+}
+
+.fragmento {
+  margin-top: 40px;
+  font-style: italic;
+  color: #bbb;
+}
