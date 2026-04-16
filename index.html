@@ -77,8 +77,11 @@
     }
 
     // Corre a ~24fps para el efecto estática
-    let noiseInterval = setInterval(drawNoise, 42);
-    drawNoise();
+    function loop() {
+  drawNoise();
+  requestAnimationFrame(loop);
+}
+loop();
 
     // ── Timestamp ──
     let seconds = 0;
