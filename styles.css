@@ -66,12 +66,36 @@ body {
   padding: 10px 20px;
   margin: 10px;
   color: #d1d1d1;
-  transition: 0.2s;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Hover */
 .home-buttons a:hover {
   border-color: #e8e0c9;
   color: #e8e0c9;
+  transform: translateY(-2px);
+}
+
+/* Click */
+.home-buttons a:active {
+  transform: scale(0.96);
+}
+
+.home-buttons a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: #e8e0c9;
+  transition: width 0.3s ease;
+}
+
+.home-buttons a:hover::after {
+  width: 100%;
 }
 
 /* Filosofía */
@@ -241,4 +265,20 @@ body {
   margin: auto;
   padding: 120px 20px;
   line-height: 1.6;
+}
+
+/* Fondo home con textura */
+.home {
+  position: relative;
+  background: radial-gradient(circle at center, #111 0%, #0a0a0a 70%);
+}
+
+/* Capa extra sutil */
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  opacity: 0.15;
+  pointer-events: none;
 }
