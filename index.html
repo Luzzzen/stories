@@ -106,6 +106,12 @@ loop();
     // ── Navegación con teclado (↑↓ Enter) ──
     const items = document.querySelectorAll('.tv-menu-item');
     let current = 0;
+    items.forEach((item, index) => {
+  item.addEventListener('mouseenter', () => {
+    current = index;
+    updateSelection();
+  });
+});
 
     function updateSelection() {
       items.forEach((item, i) => {
