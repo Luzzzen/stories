@@ -712,3 +712,29 @@ a {
     padding-right: 16px;
   }
 }
+
+/* ========================= */
+/* CRT OFF ANIMATION */
+/* ========================= */
+
+@keyframes tvOff {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  60% {
+    transform: scaleY(0.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+.tv-screen.turn-off {
+  animation: tvOff 0.4s ease forwards;
+  background: #000;
+}
