@@ -2,48 +2,121 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Stories - By Nazareno N. Carreto Lucentino</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories — Nazareno N. Carreto Lucentino</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="vhs-overlay"></div>
-
-  <div class="vhs-hud">
-  <span>REC ●</span>
-  <span id="time">00:00:00</span>
-</div>
-
-  <div class="grain"></div>
 
   <main class="home">
 
-    <h1 class="titulo glitch" data-text="Stories">Stories</h1>
-    <h2 class="subtitulo">By Nazareno N. Carreto Lucentino</h2>
+    <div class="tv-wrapper">
+      <div class="tv-body">
+        <div class="tv-screen-frame">
+          <div class="tv-screen" id="tvScreen">
 
-    <p class="frase">
-      Mi catálogo de historias, 100% gratuito.
-    </p>
+            <!-- Ruido animado -->
+            <canvas id="noiseCanvas"></canvas>
 
-    <div class="home-buttons">
-      <a href="catalogo.html">Ver cuentos</a>
-      <a href="sobre.html">Sobre el proyecto</a>
+            <!-- Indicadores HUD -->
+            <div class="tv-rec"><span class="dot"></span> REC</div>
+            <div class="tv-channel">CH 03</div>
+            <div class="tv-timestamp" id="tvTime">00:00:00</div>
+
+            <!-- Reflejo -->
+            <div class="tv-glare"></div>
+
+            <!-- Contenido -->
+            <div class="tv-content">
+              <h1 class="tv-title">Stories</h1>
+              <p class="tv-author">By Nazareno N. Carreto Lucentino</p>
+              <div class="tv-divider"></div>
+
+              <nav class="tv-menu">
+                <a href="catalogo.html" class="tv-menu-item selected">Ver cuentos</a>
+                <a href="sobre.html" class="tv-menu-item">Sobre el proyecto</a>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
 
   </main>
 
-<script>
-let seconds = 0;
+  <script>
+    // ── Ruido animado en canvas ──
+    const canvas = document.getElementById('noiseCanvas');
+    const ctx = canvas.getContext('2d');
 
-setInterval(() => {
-  seconds++;
+    function resizeCanvas() {
+      const screen = canvas.parentElement;
+      canvas.width = screen.clientWidth;
+      canvas.height = screen.clientHeight;
+    }
 
-  let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
-  let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-  let secs = String(seconds % 60).padStart(2, '0');
+    function drawNoise() {
+      resizeCanvas();
+      const imageData = ctx.createImageData(canvas.width, canvas.height);
+      const data = imageData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const v = Math.random() > 0.5 ? 255 : 0;
+        data[i] = v;
+        data[i+1] = v;
+        data[i+2] = v;
+        data[i+3] = Math.random() * 60 + 10;
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
 
-  document.getElementById("time").textContent = `${hrs}:${mins}:${secs}`;
-}, 1000);
-</script>  
+    // Corre a ~24fps para el efecto estática
+    let noiseInterval = setInterval(drawNoise, 42);
+    drawNoise();
+
+    // ── Timestamp ──
+    let seconds = 0;
+    setInterval(() => {
+      seconds++;
+      const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+      const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+      const s = String(seconds % 60).padStart(2, '0');
+      document.getElementById('tvTime').textContent = `${h}:${m}:${s}`;
+    }, 1000);
+
+    // ── Glitch ocasional ──
+    const screen = document.getElementById('tvScreen');
+    function triggerGlitch() {
+      screen.classList.add('glitching');
+      setTimeout(() => screen.classList.remove('glitching'), 200);
+      // Próximo glitch en 5-20 segundos
+      setTimeout(triggerGlitch, 5000 + Math.random() * 15000);
+    }
+    setTimeout(triggerGlitch, 3000 + Math.random() * 5000);
+
+    // ── Navegación con teclado (↑↓ Enter) ──
+    const items = document.querySelectorAll('.tv-menu-item');
+    let current = 0;
+
+    function updateSelection() {
+      items.forEach((item, i) => {
+        item.classList.toggle('selected', i === current);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        current = (current + 1) % items.length;
+        updateSelection();
+      } else if (e.key === 'ArrowUp') {
+        current = (current - 1 + items.length) % items.length;
+        updateSelection();
+      } else if (e.key === 'Enter') {
+        window.location.href = items[current].href;
+      }
+    });
+  </script>
+
 </body>
 </html>
