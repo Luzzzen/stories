@@ -1,9 +1,11 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* BASE */
 body {
   background-color: #0a0a0a;
   color: #d1d1d1;
@@ -11,7 +13,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Grain overlay */
+/* GRAIN */
 .grain {
   position: fixed;
   width: 100%;
@@ -21,15 +23,72 @@ body {
   opacity: 0.05;
 }
 
-/* Header */
+/* ========================= */
+/* HOME */
+/* ========================= */
+
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 3.5rem;
+  letter-spacing: 4px;
+}
+
+.frase {
+  margin-top: 10px;
+  color: #aaa;
+}
+
+.home-buttons {
+  margin-top: 30px;
+}
+
+.home-buttons a {
+  text-decoration: none;
+  border: 1px solid #444;
+  padding: 10px 20px;
+  margin: 10px;
+  color: #d1d1d1;
+  transition: 0.2s;
+}
+
+.home-buttons a:hover {
+  border-color: #e8e0c9;
+  color: #e8e0c9;
+}
+
+/* Filosofía */
+.filosofia {
+  max-width: 700px;
+  margin: auto;
+  padding: 100px 20px;
+}
+
+.filosofia h2 {
+  font-family: 'Cinzel', serif;
+  margin-bottom: 20px;
+}
+
+/* ========================= */
+/* CATALOGO */
+/* ========================= */
+
 header {
   text-align: center;
   padding: 80px 20px 40px;
 }
 
-h1 {
+header h1 {
   font-family: 'Cinzel', serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   letter-spacing: 3px;
 }
 
@@ -38,7 +97,6 @@ h1 {
   color: #bfbfbf;
 }
 
-/* Catalogo */
 .catalogo {
   max-width: 900px;
   margin: auto;
@@ -51,7 +109,6 @@ h1 {
   padding: 25px;
   margin-bottom: 20px;
   transition: 0.3s ease;
-  position: relative;
 }
 
 .card:hover {
@@ -59,19 +116,26 @@ h1 {
   transform: translateY(-3px);
 }
 
-/* ID */
 .id {
   font-size: 0.8rem;
   color: #777;
 }
 
-/* Title */
 .card h2 {
   font-family: 'Cinzel', serif;
   margin: 10px 0;
 }
 
-/* Buttons */
+.card h2 a {
+  color: #d1d1d1;
+  text-decoration: none;
+}
+
+.card h2 a:hover {
+  color: #e8e0c9;
+}
+
+/* Botones */
 .buttons {
   margin-top: 15px;
 }
@@ -90,6 +154,10 @@ h1 {
   border-color: #e8e0c9;
   color: #e8e0c9;
 }
+
+/* ========================= */
+/* CUENTO */
+/* ========================= */
 
 .cuento {
   max-width: 700px;
@@ -110,6 +178,12 @@ h1 {
 .cuento h1 {
   font-family: 'Cinzel', serif;
   margin: 20px 0;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 10px;
 }
 
 .sinopsis {
@@ -135,13 +209,4 @@ h1 {
   margin-top: 40px;
   font-style: italic;
   color: #bbb;
-}
-
-.card h2 a {
-  color: #d1d1d1;
-  text-decoration: none;
-}
-
-.card h2 a:hover {
-  color: #e8e0c9;
 }
