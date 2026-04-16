@@ -371,3 +371,37 @@ header h1 {
   padding: 120px 20px;
   line-height: 1.6;
 }
+
+/* ========================= */
+/* VHS OVERLAY */
+/* ========================= */
+
+.vhs-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity: 0.15;
+}
+
+/* ========================= */
+/* VHS HUD */
+/* ========================= */
+
+.vhs-hud {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #ff4d4d;
+  display: flex;
+  gap: 10px;
+  opacity: 0.8;
+}
