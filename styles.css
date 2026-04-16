@@ -18,7 +18,7 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   padding: 20px;
-  animation: fadeIn 1.2s ease;
+  animation: fadeIn 1.2s ease, flicker 6s infinite;
 }
 
 /* Fade-in */
@@ -433,3 +433,18 @@ header h1 {
   transform: translate(2px, 0);
 }
 
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.98; }
+}
+
+@keyframes tracking {
+  0% { transform: translateY(0); }
+  2% { transform: translateY(2px); }
+  4% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+.home {
+  animation: tracking 8s infinite;
+}
