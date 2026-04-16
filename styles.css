@@ -405,3 +405,31 @@ header h1 {
   gap: 10px;
   opacity: 0.8;
 }
+
+/* ========================= */
+/* RGB VHS */
+/* ========================= */
+
+.titulo {
+  position: relative;
+}
+
+.titulo::before,
+.titulo::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.15;
+}
+
+.titulo::before {
+  color: red;
+  transform: translate(-2px, 0);
+}
+
+.titulo::after {
+  color: cyan;
+  transform: translate(2px, 0);
+}
+
