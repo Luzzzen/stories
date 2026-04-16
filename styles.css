@@ -1,19 +1,39 @@
+/* ========================= */
 /* RESET */
+/* ========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ========================= */
 /* BASE */
+/* ========================= */
+
 body {
   background-color: #0a0a0a;
   color: #d1d1d1;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  padding: 20px;
+  animation: fadeIn 1.2s ease;
 }
 
-/* GRAIN */
+/* Fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Grain */
 .grain {
   position: fixed;
   width: 100%;
@@ -21,6 +41,24 @@ body {
   pointer-events: none;
   background: url('https://grainy-gradients.vercel.app/noise.svg');
   opacity: 0.05;
+}
+
+/* Viñeta (oscurece bordes) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.7) 100%);
+}
+
+/* Marco tipo interfaz */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 10px;
+  border: 1px solid #222;
+  pointer-events: none;
 }
 
 /* ========================= */
@@ -34,8 +72,21 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+  background: radial-gradient(circle at center, #111 0%, #0a0a0a 70%);
 }
 
+/* Textura */
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Título */
 .titulo {
   font-family: 'Cinzel', serif;
   font-size: 4.5rem;
@@ -46,6 +97,7 @@ body {
     0 0 20px rgba(232, 224, 201, 0.05);
 }
 
+/* Subtítulo */
 .subtitulo {
   font-family: 'Cinzel', serif;
   font-size: 0.8rem;
@@ -53,9 +105,6 @@ body {
   color: #777;
   margin-top: 6px;
   opacity: 0.8;
-}
-
-.subtitulo {
   animation: fadeSub 2s ease;
 }
 
@@ -70,11 +119,13 @@ body {
   }
 }
 
+/* Frase */
 .frase {
   margin-top: 10px;
   color: #aaa;
 }
 
+/* Botones */
 .home-buttons {
   margin-top: 30px;
 }
@@ -92,14 +143,12 @@ body {
   overflow: hidden;
 }
 
-/* Hover */
 .home-buttons a:hover {
   border-color: #e8e0c9;
   color: #e8e0c9;
   transform: translateY(-2px);
 }
 
-/* Click */
 .home-buttons a:active {
   transform: scale(0.96);
 }
@@ -119,16 +168,62 @@ body {
   width: 100%;
 }
 
-/* Filosofía */
-.filosofia {
-  max-width: 700px;
-  margin: auto;
-  padding: 100px 20px;
+/* ========================= */
+/* GLITCH */
+/* ========================= */
+
+.glitch {
+  position: relative;
+  display: inline-block;
 }
 
-.filosofia h2 {
-  font-family: 'Cinzel', serif;
-  margin-bottom: 20px;
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: #e8e0c9;
+}
+
+.glitch::after {
+  color: #ffffff;
+}
+
+@keyframes glitchFlash {
+  0%, 90%, 100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+
+  91% {
+    opacity: 0.15;
+    transform: translate(-3px, 2px);
+  }
+
+  92% {
+    opacity: 0.1;
+    transform: translate(3px, -2px);
+  }
+
+  93% {
+    opacity: 0.08;
+    transform: translate(-2px, 3px);
+  }
+}
+
+.glitch::before {
+  animation: glitchFlash 7s infinite;
+}
+
+.glitch::after {
+  animation: glitchFlash 7s infinite reverse;
 }
 
 /* ========================= */
@@ -167,7 +262,8 @@ header h1 {
 
 .card:hover {
   border-color: #e8e0c9;
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 0 15px rgba(232, 224, 201, 0.05);
 }
 
 .id {
@@ -265,108 +361,13 @@ header h1 {
   color: #bbb;
 }
 
-/* Fade-in general */
-body {
-  animation: fadeIn 1.2s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ========================= */
+/* FILOSOFIA */
+/* ========================= */
 
 .filosofia {
   max-width: 700px;
   margin: auto;
   padding: 120px 20px;
   line-height: 1.6;
-}
-
-/* Fondo home con textura */
-.home {
-  position: relative;
-  background: radial-gradient(circle at center, #111 0%, #0a0a0a 70%);
-}
-
-/* Capa extra sutil */
-.home::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-  opacity: 0.15;
-  pointer-events: none;
-}
-
-/* ========================= */
-/* GLITCH CINEMATOGRAFICO */
-/* ========================= */
-
-.glitch {
-  position: relative;
-  display: inline-block;
-}
-
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.glitch::before {
-  color: #e8e0c9;
-}
-
-.glitch::after {
-  color: #ffffff;
-}
-
-/* Apariciones sutiles */
-@keyframes glitchFlash {
-  0%, 90%, 100% {
-    opacity: 0;
-    transform: translate(0);
-  }
-
-  91% {
-    opacity: 0.15;
-    transform: translate(-3px, 2px);
-  }
-
-  92% {
-    opacity: 0.1;
-    transform: translate(3px, -2px);
-  }
-
-  93% {
-    opacity: 0.08;
-    transform: translate(-2px, 3px);
-  }
-}
-
-.glitch::before {
-  animation: glitchFlash 7s infinite;
-}
-
-.glitch::after {
-  animation: glitchFlash 7s infinite reverse;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.7) 100%);
 }
