@@ -38,8 +38,12 @@ body {
 
 .titulo {
   font-family: 'Cinzel', serif;
-  font-size: 3.5rem;
-  letter-spacing: 4px;
+  font-size: 4.5rem;
+  letter-spacing: 6px;
+  color: #e8e0c9;
+  text-shadow:
+    0 0 10px rgba(232, 224, 201, 0.08),
+    0 0 20px rgba(232, 224, 201, 0.05);
 }
 
 .subtitulo {
@@ -313,24 +317,24 @@ body {
 
 /* Apariciones sutiles */
 @keyframes glitchFlash {
-  0%, 94%, 100% {
+  0%, 90%, 100% {
     opacity: 0;
     transform: translate(0);
   }
 
-  95% {
+  91% {
+    opacity: 0.15;
+    transform: translate(-3px, 2px);
+  }
+
+  92% {
+    opacity: 0.1;
+    transform: translate(3px, -2px);
+  }
+
+  93% {
     opacity: 0.08;
-    transform: translate(-2px, 1px);
-  }
-
-  96% {
-    opacity: 0.06;
-    transform: translate(2px, -1px);
-  }
-
-  97% {
-    opacity: 0.04;
-    transform: translate(-1px, 2px);
+    transform: translate(-2px, 3px);
   }
 }
 
@@ -340,4 +344,12 @@ body {
 
 .glitch::after {
   animation: glitchFlash 7s infinite reverse;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.7) 100%);
 }
