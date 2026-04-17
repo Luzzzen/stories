@@ -56,7 +56,12 @@
 
     // ── Encendido al cargar ──
     window.addEventListener('DOMContentLoaded', () => {
-      screenEl.classList.add('turn-on');
+      screenEl.style.transform = "scaleY(0.02)";
+screenEl.style.opacity = "0";
+
+setTimeout(() => {
+  screenEl.classList.add('turn-on');
+}, 150);
     });
 
     // ── Ruido animado en canvas ──
