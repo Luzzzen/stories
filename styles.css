@@ -498,16 +498,18 @@ a {
   margin-bottom: 16px;
 }
 
-.card-link .card {
-  margin-bottom: 0;
-  cursor: pointer;
-}
+.card {
   border: 1px solid #1e1e1e;
   padding: 24px;
   margin-bottom: 16px;
   background: rgba(255,255,255,0.012);
   position: relative;
   transition: border-color 0.2s, background 0.2s;
+}
+
+.card-link .card {
+  margin-bottom: 0;
+  cursor: pointer;
 }
 
 .card::before {
