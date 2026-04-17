@@ -34,7 +34,7 @@
             Después de perderlo todo, un hombre encuentra una forma de volver a hablar con quien ya no está.
           </p>
           <div class="buttons" onclick="event.stopPropagation()">
-            <a href="downloads/el-servicio.epub" onclick="addDownload('el-servicio')">EPUB</a>
+            <a href="downloads/el-servicio.epub" onclick="handleDownload(event, 'el-servicio', this.href)">EPUB</a>
             <a href="downloads/el-servicio.pdf" onclick="addDownload('el-servicio')">PDF</a>
           </div>
         </div>
@@ -90,6 +90,16 @@ async function addDownload(id) {
   }
 
   await dbSet(ref, current + 1);
+}
+</script>
+
+<script>
+async function handleDownload(e, id, url) {
+  e.preventDefault();
+
+  await addDownload(id);
+
+  window.location.href = url;
 }
 </script>
   
