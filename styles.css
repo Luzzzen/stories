@@ -753,3 +753,33 @@ a {
   animation: tvOff 0.4s ease forwards;
   background: #000;
 }
+
+/* ========================= */
+/* CRT ON ANIMATION */
+/* ========================= */
+
+@keyframes tvOn {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  40% {
+    transform: scaleY(0.05);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scaleY(1.2);
+  }
+
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.tv-screen.turn-on {
+  animation: tvOn 0.5s ease forwards;
+  background: #000;
+}
