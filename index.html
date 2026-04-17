@@ -48,20 +48,26 @@
   </main>
 
   <script>
-    // ── Ruido animado en canvas ──
     const canvas = document.getElementById('noiseCanvas');
     const ctx = canvas.getContext('2d');
+    const screenEl = document.getElementById('tvScreen');
+    const items = document.querySelectorAll('.tv-menu-item');
+    let current = 0;
 
+    // ── Encendido al cargar ──
+    window.addEventListener('DOMContentLoaded', () => {
+      screenEl.classList.add('turn-on');
+    });
+
+    // ── Ruido animado en canvas ──
     function resizeCanvas() {
-  const screen = canvas.parentElement;
-  const w = screen.clientWidth;
-  const h = screen.clientHeight;
-
-  if (canvas.width !== w || canvas.height !== h) {
-    canvas.width = w;
-    canvas.height = h;
-  }
-}
+      const w = screenEl.clientWidth;
+      const h = screenEl.clientHeight;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+    }
 
     function drawNoise() {
       resizeCanvas();
@@ -69,20 +75,13 @@
       const data = imageData.data;
       for (let i = 0; i < data.length; i += 4) {
         const v = Math.random() * 255;
-        data[i] = v;
-        data[i+1] = v;
-        data[i+2] = v;
+        data[i] = v; data[i+1] = v; data[i+2] = v;
         data[i+3] = Math.random() * 60 + 10;
       }
       ctx.putImageData(imageData, 0, 0);
+      requestAnimationFrame(drawNoise);
     }
-
-    // Corre a ~24fps para el efecto estática
-    function loop() {
-  drawNoise();
-  requestAnimationFrame(loop);
-}
-loop();
+    drawNoise();
 
     // ── Timestamp ──
     let seconds = 0;
@@ -95,72 +94,42 @@ loop();
     }, 1000);
 
     // ── Glitch ocasional ──
-    const screen = document.getElementById('tvScreen');
     function triggerGlitch() {
-      screen.classList.add('glitching');
-      setTimeout(() => screen.classList.remove('glitching'), 200);
-      // Próximo glitch en 5-20 segundos
+      screenEl.classList.add('glitching');
+      setTimeout(() => screenEl.classList.remove('glitching'), 200);
       setTimeout(triggerGlitch, 5000 + Math.random() * 15000);
     }
     setTimeout(triggerGlitch, 3000 + Math.random() * 5000);
 
-    // ── Navegación con teclado (↑↓ Enter) ──
-    const items = document.querySelectorAll('.tv-menu-item');
-    let current = 0;
-    items.forEach((item, index) => {
-  item.addEventListener('mouseenter', () => {
-    current = index;
-    updateSelection();
-  });
-});
-
+    // ── Selección de menú ──
     function updateSelection() {
-      items.forEach((item, i) => {
-        item.classList.toggle('selected', i === current);
-      });
+      items.forEach((item, i) => item.classList.toggle('selected', i === current));
     }
 
+    items.forEach((item, index) => {
+      item.addEventListener('mouseenter', () => { current = index; updateSelection(); });
+    });
+
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown') {
-        current = (current + 1) % items.length;
-        updateSelection();
-      } else if (e.key === 'ArrowUp') {
-        current = (current - 1 + items.length) % items.length;
-        updateSelection();
-      } else if (e.key === 'Enter') {
-        window.location.href = items[current].href;
-      }
+      if (e.key === 'ArrowDown') { current = (current + 1) % items.length; updateSelection(); }
+      else if (e.key === 'ArrowUp') { current = (current - 1 + items.length) % items.length; updateSelection(); }
+      else if (e.key === 'Enter') { navigateTo(items[current].href); }
+    });
+
+    // ── Navegación con apagado ──
+    function navigateTo(href) {
+      screenEl.classList.remove('turn-on');
+      screenEl.classList.add('turn-off');
+      setTimeout(() => { window.location.href = href; }, 420);
+    }
+
+    items.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigateTo(link.href);
+      });
     });
   </script>
-
-  <script>
-const screenEl = document.getElementById('tvScreen');
-
-document.querySelectorAll('.tv-menu-item').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault(); // evita salto inmediato
-
-    const target = this.href;
-
-    // animación de apagado
-    screenEl.classList.add('turn-off');
-
-    // delay antes de cambiar de página
-    setTimeout(() => {
-      window.location.href = target;
-    }, 400);
-  });
-});
-</script>
-
-<script>
-const screenEl = document.getElementById('tvScreen');
-
-// pequeño delay para que se note el "apagado"
-setTimeout(() => {
-  screenEl.classList.add('turn-on');
-}, 200);
-</script>
 
 </body>
 </html>
