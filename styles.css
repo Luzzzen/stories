@@ -788,3 +788,10 @@ a {
   animation: tvOn 0.5s ease forwards;
   background: #000;
 }
+
+.download-count {
+  font-size: 0.6rem;
+  color: #5a5a5a;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
