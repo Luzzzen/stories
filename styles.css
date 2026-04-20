@@ -795,3 +795,7 @@ a {
   margin-top: 6px;
   letter-spacing: 1px;
 }
+
+.download-count:empty {
+  display: none;
+}
